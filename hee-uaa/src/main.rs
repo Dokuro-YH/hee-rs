@@ -1,23 +1,20 @@
-use tide_tracing::TraceMiddleware;
+use tracing_subscriber::{filter, fmt::time};
 
 #[async_std::main]
 async fn main() -> tide::Result<()> {
-    let subscriber = tracing_subscriber::fmt()
-        .with_max_level(tracing::Level::DEBUG)
-        .finish();
+    // tracing
+    let filter = filter::EnvFilter::from_default_env();
+    tracing_subscriber::fmt()
+        .with_env_filter(filter)
+        .with_timer(time::ChronoLocal::with_format("%FT%T%.3f%:z".to_string()))
+        .init();
 
-    tracing::subscriber::set_global_default(subscriber).expect("no global subscriber has been set");
-
-    tracing_log::LogTracer::init()?;
-
+    // tide
     let mut app = tide::new();
-    // middleware
-    app.with(TraceMiddleware::new());
 
     // routes
     app.at("/").all(|_req| async { Ok("Hello, world!") });
 
-    // start
     app.listen("127.0.0.1:8080").await?;
     Ok(())
 }

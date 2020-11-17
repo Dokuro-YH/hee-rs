@@ -10,12 +10,15 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dotenv = "0.15.0"
 async-std = { version = "1.7.0", features = ["attributes"] }
+chrono = "0.4.19"
+uuid = "0.8.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 
 # tide
 tide = "0.15.0"
-tide-tracing = "0.0.7"
+# tide-tracing = "0.0.7"
 
 # database
 sqlx = { version = "0.4.1", features = ["runtime-async-std-native-tls"] }
@@ -24,4 +27,4 @@ sqlx = { version = "0.4.1", features = ["runtime-async-std-native-tls"] }
 tracing = "0.1"
 tracing-log = "0.1"
 tracing-futures = "0.2"
-tracing-subscriber = "0.2"
+tracing-subscriber = { version = "0.2", features = ["env-filter"] }
