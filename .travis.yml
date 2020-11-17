@@ -1,0 +1,9 @@
+sudo: false
+language: rust
+rust:
+  - stable
+cache: cargo
+install:
+  - cargo build --verbose --all
+script:
+  - cargo test --verbose --all
