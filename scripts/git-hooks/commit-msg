@@ -13,7 +13,7 @@ SUCCESS="${GREEN}ok${NC}"
 
 FAILED=0
 
-commit_regex='^Merge.+|(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|types)(\(.+\))?: .{1,50}'
+commit_regex='^Merge.+|(build|ci|docs|feat|fix|perf|refactor|test)(\(.+\))?: .{1,50}'
 
 printf "${PREFIX} Checking commit message ... "
 if ! grep -iqE "$commit_regex" "$1"; then

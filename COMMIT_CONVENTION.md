@@ -4,7 +4,7 @@
 信息必须与以下的regex匹配。
 
 ```
-^Merge.+|(build|ci|docs|feat|fix|perf|refactor|test)(\(.+\))?
+^Merge.+|(build|ci|docs|feat|fix|perf|refactor|test)(\(.+\))?: .{1,50}
 ```
 
 ### Examples
