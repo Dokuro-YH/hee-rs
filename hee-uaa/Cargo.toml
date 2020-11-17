@@ -1,0 +1,27 @@
+[package]
+name = "hee-uaa"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/Dokuro-YH/hee-rs"
+authors = ["Yanhai <shimmly@live.cn>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dotenv = "0.15.0"
+async-std = { version = "1.7.0", features = ["attributes"] }
+
+# tide
+tide = "0.15.0"
+tide-tracing = "0.0.7"
+
+# database
+sqlx = { version = "0.4.1", features = ["runtime-async-std-native-tls"] }
+
+# tracing
+tracing = "0.1"
+tracing-log = "0.1"
+tracing-futures = "0.2"
+tracing-subscriber = "0.2"
