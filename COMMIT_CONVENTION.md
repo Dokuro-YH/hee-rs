@@ -1,23 +1,21 @@
 # Git Commit Message Convention
-> This is adapted from [Angular's commit convention.](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
+> 这是根据[Angular的提交惯例](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)改编的。
 
-Messages must be matched by the following regex:
+信息必须与以下的regex匹配。
 
 ```
-^Merge.+|(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|types)(\(.+\))?: .{1,50}
+^Merge.+|(build|ci|docs|feat|fix|perf|refactor|test)(\(.+\))?
 ```
 
 ### Examples
 
-Appears under "Features" header, `core` subheader:
-
 ```
-feat(core): add config option
+feat(core): 添加配置选项
 ```
 
 ### Commit Message Format
 
-A commit message consists of a **header**, **body** and **footer**.  The header has a **type**, **scope** and **subject**:
+提交消息由**header**、**body**和**footer**组成。 header有**type**、**scope**和**subject**。
 
 ```
 <type>(<scope>): <subject>
@@ -27,38 +25,49 @@ A commit message consists of a **header**, **body** and **footer**.  The header 
 <footer>
 ```
 
-The **header** is mandatory and the **scope** of the header is optional.
-
-### Revert
-
-If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body, it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
+**header**是强制性的，header的**scope**是可选的。
 
 ### Type
 
-If the prefix is `feat`, `fix` or `perf`, it will appear in the changelog. However, if there is any [BREAKING CHANGE](#footer), the commit will always appear in the changelog.
+**type**必须是下列之一：
 
-Other prefixes are up to your discretion. Suggested prefixes are `docs`, `chore`, `style`, `refactor`, and `test` for non-changelog related tasks.
+- **build**: 影响构建系统或外部依赖关系的变化
+- **ci**: 改变CI配置文件和脚本
+- **docs**: 只修改文档
+- **feat**: 一个新的功能
+- **fix**: 修复一个错误
+- **perf**: 提高性能的代码修改
+- **refactor**: 既不修复bug也不增加功能的代码修改
+- **test**: 增加缺失的测试或纠正现有测试
 
 ### Scope
 
-The scope could be anything specifying the place of the commit change. For example `core`, `system`, `config`, `uaa`, `oa` etc...
+**scope**可以是任何指定提交修改地点的东西，包含但不限于以下几种:
+
+- **core**: 核心模块
+- **system**: 系统模块
+- **uaa**: 用户账号与授权模块
+- **oa**: 人事OA模块
 
 ### Subject
 
-The subject contains a succinct description of the change:
-
-* use the imperative, present tense: "change" not "changed" nor "changes"
-* don't capitalize the first letter
-* no dot (.) at the end
+**subject**一句话简要的描述这次修改的内容。
 
 ### Body
 
-Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
-The body should include the motivation for the change and contrast this with previous behavior.
+**body**应该包括改变的动机，并与之前的行为形成对比。
 
 ### Footer
 
-The footer should contain any information about **Breaking Changes** and is also the place to
-reference GitHub issues that this commit **Closes**.
+**footer**应包含任何有关**Breaking Changes**的信息
 
-**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
+**Breaking Changes**应该以`BREAKING CHANGE:`开头，并加上一个空格或两个新行。然后，提交消息的其余部分将用于此。
+
+```
+BREAKING CHANGE: <breaking change summary>
+<BLANK LINE>
+<breaking change description + migration instructions>
+<BLANK LINE>
+<BLANK LINE>
+Fixes #<issue number>
+```
