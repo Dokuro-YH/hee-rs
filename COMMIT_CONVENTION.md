@@ -53,13 +53,16 @@ feat(core): 添加配置选项
 
 **subject**一句话简要的描述这次修改的内容。
 
+- 不要以句号结尾
+- 英文首字母不要大写
+
 ### Body
 
 **body**应该包括改变的动机，并与之前的行为形成对比。
 
 ### Footer
 
-**footer**应包含任何有关**Breaking Changes**的信息
+**footer**应包含任何有关**Breaking Changes**的信息。
 
 **Breaking Changes**应该以`BREAKING CHANGE:`开头，并加上一个空格或两个新行。然后，提交消息的其余部分将用于此。
 
