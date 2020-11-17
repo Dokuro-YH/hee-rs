@@ -1,0 +1,31 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # No Color
+
+PREFIX="${GREEN}[HOOKS]${NC}"
+FAILURE="${RED}FAILED${NC}"
+WARNING="${YELLOW}[WARNING]${NC}"
+SKIPPED="${YELLOW}SKIPPED${NC}"
+SUCCESS="${GREEN}ok${NC}"
+
+FAILED=0
+
+commit_regex='^Merge.+|(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|types)(\(.+\))?: .{1,50}'
+
+printf "${PREFIX} Checking commit message ... "
+if ! grep -iqE "$commit_regex" "$1"; then
+    FAILED=1
+    printf "${FAILURE}\n"
+    printf "  - Messages must be matched by the following regex:\n\n"
+    printf "    $commit_regex\n\n"
+    printf "  - Examples\n\n"
+    printf "    feat(core): add web module\n\n"
+    printf "See COMMIT_CONVENTION.md for more details.\n"
+else
+    printf "${SUCCESS}\n"
+fi
+
+exit ${FAILED}
